@@ -3,6 +3,7 @@
  */
 "use strict"
 import React, { Component } from 'react';
+import Radio from '../components/Radio';
 
 export default class Panel extends Component{
 
@@ -22,6 +23,7 @@ export default class Panel extends Component{
     render(){
        return(
             <div >
+              <Radio/>
               <input onChange={this.handleChange} type="text" ref = "h1input" value={this.props.parentState}/>
             </div>
         )
