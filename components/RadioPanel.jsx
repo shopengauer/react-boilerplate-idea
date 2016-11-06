@@ -3,15 +3,14 @@
  */
 "use strict"
 import React, { Component } from 'react';
-import Radio from '../components/Radio';
 
-export default class Panel extends Component{
+export default class RadioPanel extends Component{
 
-    constructor(props){
-        super(props);
-
+    constructor(){
+        super();
+        this.state = {radioState: {}}
         this.handleChange = this.handleChange.bind(this);
-}
+    }
 
     handleChange() {
         this.props.onUserInput(
@@ -21,10 +20,12 @@ export default class Panel extends Component{
 
 
     render(){
-       return(
-            <div >
-              <Radio/>
-              <input onChange={this.handleChange} type="text" ref = "h1input" value={this.props.parentState}/>
+
+        const radios = this.props.children;
+         console.log(radios);
+        return(
+            <div>
+                {radios}
             </div>
         )
     }

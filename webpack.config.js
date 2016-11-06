@@ -11,7 +11,10 @@ var config = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [{
+    loaders: [
+
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+        {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel',

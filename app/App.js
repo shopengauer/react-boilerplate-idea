@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
-import Panel from "../components/Panel.jsx";
+import RadioPanel from "../components/RadioPanel.jsx";
+import Radio from "../components/Radio.jsx";
 
 class App extends Component {
 
@@ -8,7 +9,7 @@ class App extends Component {
     super();
     this.state = {parentState: "Kotlin"}
 
-     this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleUserInput = this.handleUserInput.bind(this);
   }
 
    handleUserInput(lang) {
@@ -23,7 +24,12 @@ class App extends Component {
      return (
        <div>
          <h1>Parent state {this.state.parentState}</h1>
-         <Panel onUserInput = {this.handleUserInput} parentState = {this.state.parentState} />
+          <RadioPanel>
+            <Radio/>
+            <Radio/>
+            <Radio/>
+            <Radio/>
+       </RadioPanel>
         </div>
     );
   }
