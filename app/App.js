@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
 import Panel from "../components/Panel.jsx";
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
 
@@ -22,7 +23,7 @@ class App extends Component {
 
   render(){
      return (
-       <div>
+       <div className="container">
          <h1>Parent state {this.state.parentState}</h1>
          <Panel onUserInput = {this.handleUserInput} parentState = {this.state.parentState} />
         </div>
