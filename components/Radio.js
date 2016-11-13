@@ -28,7 +28,7 @@ export default class Radio extends React.Component{
             <div>
                 <h1>{qu}</h1>
                 <input type="radio" onChange={this.rt} checked={this.state.cook}/>
-                <button onClick={this.rt}>Button</button>
+                <button className="btn btn-primary" onClick={this.rt}>Button</button>
             </div>
         )
     }
