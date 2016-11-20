@@ -1,21 +1,23 @@
 /**
  * Created by vasiliy on 20.11.16.
  */
-import { LEFT_PANEL_VISIBLE,RIGHT_PANEL_VISIBLE } from '../constants/actionsTypes'
+import { LEFT_PANEL_VISIBLE,PANEL_VISIBLE } from '../constants/actionsTypes'
 
 const initialState = {
-    leftPanelVis: true,
-    rightPanelVis: true
+    leftPanel: "Hello From Left",
+    rightPanel: "Hello From Right"
 }
 
 export default function page(state = initialState, action) {
 
     switch (action.type) {
-        case LEFT_PANEL_VISIBLE:
-            return { leftPanelVis: !action.payload.leftPanelVis }
 
-        case RIGHT_PANEL_VISIBLE:
-            return { rightPanelVis: !action.payload.rightPanelVis }
+        case PANEL_VISIBLE:
+            return {
+                leftPanel: action.payload.leftPanel + 1,
+                rightPanel: action.payload.rightPanel + 2
+            }
+        //{leftPanel:action.payload.leftPanel + "w", rightPanel:action.payload.rightPanel + "e"}
 
         default:
             return state;

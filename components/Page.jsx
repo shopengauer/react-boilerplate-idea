@@ -4,10 +4,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import Header from "./Header.js"
-import Footer from "./Footer.js"
-
-export default class Page extends Component{
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actionCreators from '../actions/actionsCreators'
+export class Page extends Component{
 
    constructor(){
         super();
@@ -16,20 +16,25 @@ export default class Page extends Component{
 
    render(){
 
+       const {leftPanel, rightPanel} = this.props.panelsVisible
+       const { changeRightPanelVisibility} = this.props.actionCreators
+
        return(
 
 
-           
+
 
            <div className="container-fluid">
 
 
                <div className="row">
+                   <button type="button" onClick={(a,b)=>changeRightPanelVisibility(leftPanel,rightPanel)}>Нахать</button>
+
                    <div className="col-lg-6">
                        <div className="panel panel-default">
                            <div className="panel-heading">Panel heading without title</div>
                            <div className="panel-body">
-                               Basic panel example
+                               {rightPanel}
                            </div>
                        </div>
                    </div>
@@ -38,7 +43,7 @@ export default class Page extends Component{
                        <div className="panel panel-default">
                            <div className="panel-heading">Panel heading without title</div>
                            <div className="panel-body">
-                                   Basic panel example
+                               {leftPanel}
                            </div>
                        </div>
                    </div>
@@ -54,3 +59,18 @@ export default class Page extends Component{
 
 
 }
+
+function mapStateToProps(state) {
+    return {
+        panelsVisible: state.panelsVisible
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actionCreators: bindActionCreators(actionCreators, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

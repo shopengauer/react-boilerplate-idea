@@ -4,17 +4,15 @@
 "use strict"
 
 import {
-         LEFT_PANEL_VISIBLE,
-         RIGHT_PANEL_VISIBLE
+
+         PANEL_VISIBLE
         } from "../constants/actionsTypes"
 
 
-const changeRightPanelVisibility = (visible) => ({
-    type: RIGHT_PANEL_VISIBLE,
-    payload: {rightPanelVis: visible}
-});
-
-const changeLeftPanelVisibility = (visible) => ({
-    type: LEFT_PANEL_VISIBLE,
-    payload: {leftPanelVis: visible}
+export const changeRightPanelVisibility = (a,b) => ({
+    type: PANEL_VISIBLE,
+    payload:  {
+        leftPanel: a,
+        rightPanel: b
+    }
 });
