@@ -18,13 +18,11 @@ export default class Page extends Component{
 
        return(
 
+
+           
+
            <div className="container-fluid">
-               {this.props.children}
 
-                <div className="row">
-
-
-               </div>
 
                <div className="row">
                    <div className="col-lg-6">
