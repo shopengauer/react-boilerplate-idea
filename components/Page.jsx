@@ -19,40 +19,89 @@ export class Page extends Component{
        const {leftPanel, rightPanel} = this.props.panelsVisible
        const { changeRightPanelVisibility} = this.props.actionCreators
 
+       const divStyle = {
+           margin: '70px',
+
+       };
+
        return(
 
+           <div>
+               <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
+                   <a className="navbar-brand" href="#">Redux page</a>
+                   <ul className="nav navbar-nav">
+                       <li className="nav-item active">
+                           <a className="nav-link" href="#">Get started <span className="sr-only">(current)</span></a>
+                       </li>
+                       <li className="nav-item">
+                           <a className="nav-link" href="#">Doc</a>
+                       </li>
+                       <li className="nav-item">
+                           <a className="nav-link" href="#">Contact</a>
+                       </li>
+                   </ul>
+               </nav>
 
 
-
-           <div className="container-fluid">
-
-
-               <div className="row">
-                   <button type="button" onClick={(a,b)=>changeRightPanelVisibility(leftPanel,rightPanel)}>Нахать</button>
-
-                   <div className="col-lg-6">
-                       <div className="panel panel-default">
-                           <div className="panel-heading">Panel heading without title</div>
-                           <div className="panel-body">
-                               {rightPanel}
+               <div className="container-fluid" style={divStyle}>
+                   <div className="row">
+                       <div className="col-sm-6">
+                           <div className="card card-block">
+                               <h3 className="card-title">{leftPanel}</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" className="btn btn-primary">Go somewhere</a>
+                           </div>
+                       </div>
+                       <div className="col-sm-6">
+                           <div className="card card-block">
+                               <h3 className="card-title">{rightPanel}</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" onClick={(a,b)=>changeRightPanelVisibility(leftPanel,rightPanel)} className="btn btn-primary">Клац</a>
                            </div>
                        </div>
                    </div>
 
-                   <div className="col-lg-6">
-                       <div className="panel panel-default">
-                           <div className="panel-heading">Panel heading without title</div>
-                           <div className="panel-body">
-                               {leftPanel}
+                   <div className="row">
+                       <div className="col-sm-3">
+                           <div className="card card-block">
+                               <h3 className="card-title">Special title treatment</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" className="btn btn-primary">Go somewhere</a>
+                           </div>
+                       </div>
+                       <div className="col-sm-3">
+                           <div className="card card-block">
+                               <h3 className="card-title">Special title treatment</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" className="btn btn-primary">Go somewhere</a>
                            </div>
                        </div>
                    </div>
+                   <div className="row">
+                       <div className="col-sm-3">
+                           <div className="card card-block">
+                               <h3 className="card-title">Special title treatment</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" className="btn btn-primary">Go somewhere</a>
+                           </div>
+                       </div>
+                       <div className="col-sm-3">
+                           <div className="card card-block">
+                               <h3 className="card-title">Special title treatment</h3>
+                               <p className="card-text">With supporting text below as a natural lead-in to additional
+                                   content.</p>
+                               <a href="#" className="btn btn-primary">Go somewhere</a>
+                           </div>
+                       </div>
+                   </div>
+
+
                </div>
-
-
-
-
-
            </div>
        );
    }

@@ -14,8 +14,8 @@ export default function page(state = initialState, action) {
 
         case PANEL_VISIBLE:
             return {
-                leftPanel: action.payload.leftPanel + 1,
-                rightPanel: action.payload.rightPanel + 2
+                leftPanel: action.payload.leftPanel.toUpperCase(),
+                rightPanel: action.payload.rightPanel.toUpperCase()
             }
         //{leftPanel:action.payload.leftPanel + "w", rightPanel:action.payload.rightPanel + "e"}
 

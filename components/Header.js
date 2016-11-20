@@ -17,7 +17,7 @@ export default class Header extends Component{
 
 
         return(
-            <div className="page-header">
+            <div className="header">
                 <div className="row">
                     <div className="col-lg-12">
                         <h1>Header</h1>
