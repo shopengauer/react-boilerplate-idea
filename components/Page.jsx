@@ -28,7 +28,7 @@ export class Page extends Component{
 
            <div>
                <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
-                   <a className="navbar-brand" href="#">Redux page</a>
+                   <a className="navbar-brand" href="#">React from Tomcat</a>
                    <ul className="nav navbar-nav">
                        <li className="nav-item active">
                            <a className="nav-link" href="#">Get started <span className="sr-only">(current)</span></a>
