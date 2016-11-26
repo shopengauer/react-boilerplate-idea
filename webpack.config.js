@@ -7,7 +7,7 @@ var config = {
   devtool: 'eval-source-map',
   entry:  __dirname + "/index.js",
   output: {
-    path: __dirname + "/react-backend/src/main/resources/static",
+    path: __dirname + "/public",
     filename: "bundle.js"
   },
   module: {
