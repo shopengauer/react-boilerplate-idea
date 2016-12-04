@@ -3,7 +3,7 @@
  */
 "use strict"
 import React, { Component } from 'react';
-import Radio from '../components/Radio';
+import Radio from './Radio';
 
 export default class Panel extends Component{
 
