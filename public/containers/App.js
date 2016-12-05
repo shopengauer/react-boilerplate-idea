@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
-import Panel from "../components/Panel.jsx";
 import Page from "../components/Page.jsx";
 import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap-grid.css';
-//import 'bootstrap/dist/css/bootstrap-flex.css';
-import Header from "../components/Header.js"
-import Footer from "../components/Footer.js"
+require('es6-promise').polyfill();
+import fetch from 'isomorphic-fetch';
+var FileSaver = require("filesaver.js");
 
 export default class App extends Component {
 
@@ -16,18 +14,60 @@ export default class App extends Component {
   }
 
 
+   handleFetch(){
+    console.log("Click button");
+    var url = "http://localhost:8081/json";
+    fetch(url,{method:'get'}).then(function(response){
+         //console.log(response.json());
+        response.json().then(function(data) {
+            console.log(data);
+        });
 
+     })
+   }
+
+   createFileToDownload(data){
+       let blob = new Blob(["Hello"],{type:"text/plain;charset=utf-8"});
+       FileSaver.saveAs(blob,"workbook.txt");
+   }
+
+
+
+   handleFetchPost(){
+    var url = "http://localhost:8081/workbook";
+    var payload =  {
+        startDate: new Date().toLocaleDateString("ru"),
+        endDate: new Date().toLocaleDateString("ru")};
+
+    var data = new FormData();
+    data.append("startDate",payload.startDate);
+    data.append("endDate",payload.endDate);
+
+    fetch(url,{method:'post',body:data})
+        .then(function(response){
+        response.json().then(function(data) {
+            console.log(window.atob(data.workbookText));
+            console.log(data.workbookText);
+            let blob = new Blob([window.atob(data.workbookText)]);
+            FileSaver.saveAs(blob,"workbook.xls");
+
+            //this.createFileToDownload("Hello");
+        });
+     })
+   }
 
 
 
   render(){
-     return (
+
+      var date = new Date().toLocaleDateString("ru");
+
+      return (
          <div>
-
-             <Page>
-
-             </Page>
-
+             {date}
+             <button onClick={this.handleFetch}>Get</button>
+             <button onClick={this.handleFetchPost}>Post</button>
+             <button onClick={this.createFileToDownload}>Save</button>
          </div>
     );
   }
