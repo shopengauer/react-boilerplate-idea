@@ -33,8 +33,8 @@ public class HomeController {
     @CrossOrigin(origins = "http://localhost:8080")
     WorkbookObject getWorkbook(DateObject dateObject){
 
-        System.out.println(dateObject.getStartDate());
-        System.out.println(dateObject.getEndDate());
+
+
        return new WorkbookObject(1,workbookCreator.getWorkbookString(new DateObject()));
 
     }
