@@ -18,6 +18,7 @@
     "webpack-dev-server": "~1.16.2"
   },
   "dependencies": {
+    "base64-js": "^1.2.0",
     "bootstrap": "^4.0.0-alpha.5",
     "css-loader": "^0.25.0",
     "es6-promise": "^4.0.5",

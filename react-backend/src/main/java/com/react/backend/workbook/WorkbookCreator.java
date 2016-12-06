@@ -8,10 +8,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -43,6 +40,18 @@ public class WorkbookCreator {
     return false;
   }
 
+  public boolean emptyXlsFileCreateFromByteArray(String filename,byte[] bytes){
+    try(FileOutputStream fs = new FileOutputStream(filename)) {
+      fs.write(bytes);
+      return true;
+    }catch (IOException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+
+
   public Workbook workbookFileRead(String filename){
     Workbook wb;
     try {
@@ -55,26 +64,49 @@ public class WorkbookCreator {
 
   public String getWorkbookString(DateObject dateObject){
     Workbook wb = new HSSFWorkbook();
-    wb.createSheet("Расчет");
+    wb.createSheet("Отчет по комиссии");
     try(ByteArrayOutputStream bs = new ByteArrayOutputStream(); FileOutputStream fs = new FileOutputStream("work.xls")){
       wb.write(bs);
      // System.out.println(Arrays.toString(bs.toByteArray()));
       String s = Base64.encodeBase64String(bs.toByteArray());
 
-    //  System.out.println(s);
-    //  System.out.println(Arrays.toString(Base64.decodeBase64(s)));
-
-
-      /*System.out.println(Base64.decodeBase64(s).length);
-      System.out.println(Base64.encodeBase64String(bs.toByteArray()));*/
-
       return s;
     } catch (IOException e) {
-      e.printStackTrace();
+       throw new RuntimeException("Error file creating");
     }
-    return null;
+
   }
 
+  private Workbook getWorkbookFromByteArray(byte[] byteArray){
+    // get workbook from array
+
+    try (ByteArrayInputStream bs = new ByteArrayInputStream(byteArray)) {
+      Workbook wb = WorkbookFactory.create(bs);
+      return wb;
+    } catch (IOException e) {
+      throw new RuntimeException("Error create byte array");
+    } catch (InvalidFormatException e) {
+      throw new RuntimeException("Invalid format");
+    }
+  }
+
+  private byte[] getByteArrayFromWorkbook(Workbook wb){
+    // get byte array from workbook
+    try(ByteArrayOutputStream bs = new ByteArrayOutputStream()) {
+      wb.write(bs);
+      return bs.toByteArray();
+    } catch (IOException e) {
+      throw new RuntimeException("Error create byte array");
+    }
+  }
+
+  private String encodeBase64ByteArrayToString(byte[] bytes){
+    return Base64.encodeBase64String(bytes);
+  }
+
+  private byte[] decodeBase64StringToByteArray(String base64String){
+    return Base64.decodeBase64(base64String);
+  }
 
 
 }

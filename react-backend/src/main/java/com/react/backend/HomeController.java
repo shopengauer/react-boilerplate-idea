@@ -33,8 +33,6 @@ public class HomeController {
     @CrossOrigin(origins = "http://localhost:8080")
     WorkbookObject getWorkbook(DateObject dateObject){
 
-
-
        return new WorkbookObject(1,workbookCreator.getWorkbookString(new DateObject()));
 
     }

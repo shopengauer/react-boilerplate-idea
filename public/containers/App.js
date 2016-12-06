@@ -6,6 +6,8 @@ require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
 var FileSaver = require("filesaver.js");
 var Base64 = require('js-base64').Base64;
+var base64 = require('base64-js')
+
 
 export default class App extends Component {
 
@@ -47,11 +49,12 @@ export default class App extends Component {
     fetch(url,{method:'post',body:data})
         .then(function(response){
         response.json().then(function(data) {
-           // console.log(window.atob(data.workbookText));
-          //  console.log(Base64.decode(data.workbookText));
-         //   console.log(data.workbookText);
-            let blob = new Blob([Base64.decode(data.workbookText)],{type:"text/plain;charset=utf-8"});
-            FileSaver.saveAs(blob,"workbook.xls");
+
+            console.log(data.workbookText);
+            console.log(base64.toByteArray(data.workbookText));
+            let blob = new Blob([base64.toByteArray(data.workbookText)]);
+            //console.log(blob);
+            FileSaver.saveAs(blob,"testfile.xls");
 
             //this.createFileToDownload("Hello");
         });
